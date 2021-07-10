@@ -11223,6 +11223,7 @@ static __latent_entropy void run_rebalance_domains(struct softirq_action *h)
 /*
  * Trigger the SCHED_SOFTIRQ if it is time to do periodic load balancing.
  */
+#ifdef CONFIG_NO_HZ
 void trigger_load_balance(struct rq *rq)
 {
 	int type = NOHZ_KICK_ANY;
@@ -11240,6 +11241,7 @@ void trigger_load_balance(struct rq *rq)
 		nohz_balancer_kick(type);
 #endif
 }
+#endif
 
 static void rq_online_fair(struct rq *rq)
 {
